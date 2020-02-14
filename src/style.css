@@ -41,3 +41,7 @@ body {
 .container {
   margin: var(--bigSpacer) var(--smallSpacer);
 }
+
+.hidden {
+  display: none;
+}
