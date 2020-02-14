@@ -1,0 +1,32 @@
+@import '../vars.css';
+
+.comment {
+  background-color: #faf9f9;
+  height: 13rem;
+  margin: var(--mediumSpacer) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+}
+
+.comment__title {
+  font-size: var(--smallFont);
+  color: var(--grey);
+  margin-bottom: var(--smallSpacer);
+}
+
+.comment__btn {
+  background-color: var(--blue);
+  padding: var(--mediumSpacer);
+  border: none;
+  font-size: var(--regularFont);
+  color: white;
+  border-radius: 2.8rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.comment__btn svg {
+  margin: 0 var(--smallSpacer) -.2rem 0;
+}

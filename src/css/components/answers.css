@@ -1,0 +1,86 @@
+@import '../vars.css';
+
+.comments__amount {
+  color: var(--blue);
+  font-family: 'Signika Negative', sans-serif;
+  border-bottom: .1rem solid var(--grey);
+  margin-bottom: var(--mediumSpacer);
+}
+
+.comments__amount__num {
+  font-weight: 700;
+}
+
+.comments__list__comment {
+  border-bottom: .05rem solid var(--grey);
+  display: grid;
+  grid-template-columns: 5rem auto 7.5rem;
+  grid-template-rows: 3.5rem auto 4rem;
+  margin-bottom: var(--mediumSpacer);
+}
+
+.comments__list__comment__btns {
+  grid-column: 1/2;
+  grid-row: 1/3;
+  line-height: 1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-weight: 700;
+}
+
+.comments__list__comment__btns__btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.comments__list__comment__btns__btn path:hover {
+  fill: var(--blue);
+}
+
+.comments__list__comment__btns__btn--dislike {
+  transform: rotate(180deg);
+}
+
+.comments__list__comment__text__name {
+  grid-column: 2/3;
+  font-family: 'Signika Negative', sans-serif;
+  font-weight: 700;
+}
+
+.comments__list__comment__text__date {
+  grid-column: 3/4;
+  font-size: var(--smallFont);
+  color: var(--grey);
+}
+
+.comments__list__comment__text__comment {
+  grid-row: 2/3;
+  grid-column: 2/4;
+}
+
+.comments__list__comment__text__comment__tag {
+  color: var(--blue);
+}
+
+.comments__list__comment__answer {
+  grid-column: 2/4;
+  justify-self: end;
+  grid-row: 3/4;
+  background-color: var(--blue);
+  font-size: var(--smallFont);
+  color: white;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2.2rem;
+  line-height: .5;
+  margin-bottom: var(--smallSpacer);
+  cursor: pointer;
+}
+
+.comments__list__comment__answer svg {
+  margin: 0 .5rem -.2rem 0;
+}
