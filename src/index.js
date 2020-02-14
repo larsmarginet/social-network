@@ -38,7 +38,7 @@ const createComment = comment => {
         </svg>
       </button>
     </div>
-    
+
   <h2 class="comments__list__comment__text__name">${comment.name}</h2>
   <p class="comments__list__comment__text__date">${comment.date}</p>
   <p class="comments__list__comment__text__comment">${text}</p>
@@ -51,7 +51,35 @@ const createComment = comment => {
   return $li;
 };
 
+const handleClickCommentBtn = (e, store) => {
+  document.querySelector('.comment__preview').style.display = 'none';
+  const $form = document.querySelector('.comment__form');
+  $form.style.display = 'flex';
+  $form.addEventListener('submit', e => handleFormSubmit(e, store));
+};
+
+const handleFormSubmit = (e, store) => {
+  e.preventDefault();
+  const input = e.currentTarget;
+  const $name = input.querySelector('#name').value;
+  const $comment = input.querySelector('#comment').value;
+  const comment = {
+    name: $name,
+    comment: $comment
+  };
+
+  if (comment) {
+    store.addComment(comment);
+    e.currentTarget.reset();
+  }
+};
+
+
 const init = () => {
+  document.querySelector('.comment__preview').style.display = 'block';
+  document.querySelector('.comment__btn').addEventListener('click', e => handleClickCommentBtn(e, store));
+  document.querySelector('.comment__form').style.display = 'none';
+
   const store = new Store();
   window.store = store;
 
@@ -60,7 +88,7 @@ const init = () => {
     new Comment({name: 'Jelle Rouquart', date: '15/02/20', text: 'Me too!', repl: 'LarsMarginet'})
   ];
   store.seed(firstComments);
-  console.log(store);
+  
   autorun(() => {
     renderUnread(store);
     renderComments(store);

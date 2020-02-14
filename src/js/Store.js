@@ -7,9 +7,9 @@ class Store {
     this.comments = [];
   }
 
-  addComment(input) {
+  addComment({name, comment}) {
     this.date = new Published();
-    this.comments.push(new Comment({name: input.name, date: this.date.fullDate()}));
+    this.comments.push(new Comment({name: name, date: this.date.fullDate(), text: comment}));
     console.log(this.comments);
   }
 
