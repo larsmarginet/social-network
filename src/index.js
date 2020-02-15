@@ -26,7 +26,6 @@ const handleClickDislike = (comment, store) => {
 
 const createComment = (comment, store) => {
   const $li = document.createElement('li');
-  console.log(comment);
   $li.classList.add('comments__list__comment');
   let text;
   if (comment.repl) {

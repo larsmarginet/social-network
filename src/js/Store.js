@@ -1,5 +1,4 @@
 import Comment from './Comment.js';
-import Published from './Published.js';
 import {decorate, observable, computed, action} from 'mobx';
 
 class Store {
@@ -8,8 +7,7 @@ class Store {
   }
 
   addComment({name, comment, repl}) {
-    this.date = new Published();
-    this.comments.push(new Comment({name: name, date: this.date.fullDate(), text: comment, repl: repl}));
+    this.comments.push(new Comment({name: name, text: comment, repl: repl}));
   }
 
   get sortComments() {
