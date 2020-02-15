@@ -16,7 +16,7 @@ class Store {
     return this.comments.slice().sort((a, b) => b.score - a.score);
   }
 
-  get totalUnreadComments() {
+  get totalComments() {
     return this.comments.length;
   }
 
@@ -37,7 +37,7 @@ decorate(Store, {
   comments: observable,
   addComment: action,
   sortComments: computed,
-  totalUnreadComments: computed,
+  totalComments: computed,
   updateLike: action,
   updateDislike: action,
   seed: action

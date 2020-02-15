@@ -49,3 +49,9 @@ body {
 textarea {
   resize: none;
 }
+
+.form-error {
+  color: red;
+  font-size: var(--smallFont);
+
+}

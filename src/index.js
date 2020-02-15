@@ -1,10 +1,11 @@
 import './style.css';
+import './js/validate.js';
 import Store from './js/Store.js';
 import Comment from './js/Comment.js';
 import {configure, autorun} from 'mobx';
 
-const renderUnread = ({totalUnreadComments}) => {
-  document.querySelector('.comments__amount__num').textContent = totalUnreadComments;
+const renderTotalComments = ({totalComments}) => {
+  document.querySelector('.comments__amount__num').textContent = totalComments;
 };
 
 const renderComments = store => {
@@ -125,7 +126,7 @@ const init = () => {
   store.seed(firstComments);
 
   autorun(() => {
-    renderUnread(store);
+    renderTotalComments(store);
     renderComments(store);
   });
 };

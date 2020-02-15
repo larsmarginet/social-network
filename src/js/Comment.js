@@ -1,7 +1,7 @@
 import {decorate, observable, configure} from 'mobx';
 
 class Comment {
-  constructor({name, date, text, repl, score = 0}) {
+  constructor({name = 'Anonymous', date, text, repl, score = 0}) {
     this.name = name;
     this.date = date;
     this.text = text;
