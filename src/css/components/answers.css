@@ -84,3 +84,34 @@
 .comments__list__comment__answer svg {
   margin: 0 .5rem -.2rem 0;
 }
+
+.answer__form {
+  display: none;
+  grid-column: 1/4;
+}
+
+.answer__form__label {
+  display: flex;
+  flex-flow: column;
+  font-size: var(--smallFont);
+  margin-top: var(--smallSpacer);
+}
+
+.answer__form__input {
+  width: 100%;
+  border: .1rem solid var(--blue);
+  padding: var(--smallSpacer);
+  font-size: var(--smallFont);
+}
+
+.answer__form__input:focus {
+  outline-color: var(--blue);
+}
+
+.answer__form__input--comment {
+  margin-top: 0;
+}
+
+.answer__form__user {
+  color: var(--blue);
+}

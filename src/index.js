@@ -25,6 +25,7 @@ const handleClickDislike = (comment, store) => {
 
 const createComment = (comment, store) => {
   const $li = document.createElement('li');
+  console.log(comment);
   $li.classList.add('comments__list__comment');
   let text;
   if (comment.repl) {
@@ -59,10 +60,26 @@ const createComment = (comment, store) => {
     <button class="comments__list__comment__answer"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M15.6667 3.99999H14.8334V10.6667C14.8334 11.125 14.4584 11.5 14 11.5H4.00002V12.3333C4.00002 13.25 4.75002 14 5.66669 14H14L17.3334 17.3333V5.66666C17.3334 4.74999 16.5834 3.99999 15.6667 3.99999ZM13.1667 8.16666V2.33332C13.1667 1.41666 12.4167 0.666656 11.5 0.666656H2.33335C1.41669 0.666656 0.666687 1.41666 0.666687 2.33332V13.1667L4.00002 9.83332H11.5C12.4167 9.83332 13.1667 9.08332 13.1667 8.16666Z" fill="white"/>
       </svg> Answer
-    </button>`;
+    </button>
+    <form class="answer__form">
+      <label class="answer__form__label">Name<input class="answer__form__input name" type="text"></label>
+      <label class="answer__form__label">Answer<span class="answer__form__user"></span><textarea class="answer__form__input answer__form__input--comment comment" rows="4"></textarea></label>
+      <button class="comment__form__submit" type="submit">Submit</button>
+    </form>
+    `;
   $li.querySelector('.comments__list__comment__btns__btn--like').addEventListener('click', () => handleClickLike(comment, store));
   $li.querySelector('.comments__list__comment__btns__btn--dislike').addEventListener('click', () => handleClickDislike(comment, store));
+  $li.querySelector('.comments__list__comment__answer').addEventListener('click', e => handleOpenAnswerForm(e, comment, store));
   return $li;
+};
+
+const handleOpenAnswerForm = (e, comment, store) => {
+  const name = comment.name.replace(/ /g, '');
+  const $form = e.currentTarget.nextElementSibling;
+  $form.style.display = 'block';
+  $form.querySelector('.answer__form__user').textContent = `@${name}`;
+  $form.querySelector('.answer__form__input--comment').dataset.name = name;
+  $form.addEventListener('submit', e => handleFormSubmit(e, store));
 };
 
 const handleClickCommentBtn = store => {
@@ -75,27 +92,32 @@ const handleClickCommentBtn = store => {
 const handleFormSubmit = (e, store) => {
   e.preventDefault();
   const input = e.currentTarget;
-  const $name = input.querySelector('#name').value;
-  const $comment = input.querySelector('#comment').value;
+  const $name = input.querySelector('.name').value;
+  const $comment = input.querySelector('.comment').value;
   const comment = {
     name: $name,
     comment: $comment
   };
+  const $repl = input.querySelector('.comment').dataset.name;
+  if ($repl) {
+    comment.repl = $repl;
+  }
   if (comment) {
     store.addComment(comment);
     e.currentTarget.reset();
   }
 };
 
-
-const init = () => {
+const styling = store => {
   document.querySelector('.comment__preview').style.display = 'block';
   document.querySelector('.comment__btn').addEventListener('click', () => handleClickCommentBtn(store));
   document.querySelector('.comment__form').style.display = 'none';
+};
 
+const init = () => {
   const store = new Store();
   window.store = store;
-
+  styling(store);
   const firstComments = [
     new Comment({name: 'Lars Marginet', date: '15/02/20', text: 'I’d love to donate to your campaign!'}),
     new Comment({name: 'Jelle Rouquart', date: '15/02/20', text: 'Me too!', repl: 'LarsMarginet'})

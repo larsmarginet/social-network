@@ -7,9 +7,9 @@ class Store {
     this.comments = [];
   }
 
-  addComment({name, comment}) {
+  addComment({name, comment, repl}) {
     this.date = new Published();
-    this.comments.push(new Comment({name: name, date: this.date.fullDate(), text: comment}));
+    this.comments.push(new Comment({name: name, date: this.date.fullDate(), text: comment, repl: repl}));
   }
 
   get sortComments() {

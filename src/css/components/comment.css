@@ -68,4 +68,5 @@
   height: 3rem;
   margin: var(--smallSpacer) 0;
   cursor: pointer;
+  width: 100%;
 }
