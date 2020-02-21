@@ -1,5 +1,6 @@
 import Comment from './Comment.js';
-import {decorate, observable, computed, action} from 'mobx';
+import {decorate, observable, computed, action, configure} from 'mobx';
+configure({ enforceActions: "observed" });
 
 class Store {
   constructor() {
