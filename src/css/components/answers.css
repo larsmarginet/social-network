@@ -86,8 +86,11 @@
 }
 
 .answer__form {
-  display: none;
   grid-column: 1/4;
+}
+
+.answer__form--closed {
+  display: none;
 }
 
 .answer__form__label {

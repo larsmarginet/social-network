@@ -23,33 +23,32 @@ const handleClickDislike = comment => {
   store.updateDislike(comment);
 };
 
-const handleOpenAnswerForm = e => {
-  const $form = e.currentTarget.nextElementSibling;
-  $form.style.display = 'block';
+const handleOpenAnswerForm = comment => {
+  comment.openAnswerForm(true);
 };
 
-const handleFormSubmit = (e, repl) => {
+const handleFormSubmit = (e, input) => {
   e.preventDefault();
-  const input = e.currentTarget;
-  const $name = input.querySelector('.name').value;
-  const $comment = input.querySelector('.comment').value;
-  const comment = {
-    name: $name,
-    comment: $comment
+  const $comment = {
+    name: input.name,
+    comment: input.text
   };
-  if (repl) {
-    comment.repl = repl;
+  if (input.repl) {
+    $comment.repl = input.repl;
   }
-  if (comment) {
-    store.addComment(comment);
+  if ($comment) {
+    store.addComment($comment);
+    if (input.comment){
+      input.comment.openAnswerForm(false);
+    } else {
+      store.openCommentForm(false);
+    }
     e.currentTarget.reset();
   }
 };
 
-const handleShowForm = e => {
-  const $preview = e.currentTarget.parentElement;
-  $preview.style.display = 'none';
-  $preview.nextElementSibling.style.display = 'flex';
+const handleShowForm = () => {
+  store.openCommentForm(true);
 }
 
 // APP
@@ -73,7 +72,7 @@ const App = () => {
       </section>
       <section className="comment">
         <h2 className="hidden">Leave a comment...</h2>
-        <div className="comment__preview" style={{display: 'block'}}>
+        <div className={store.commentForm ? 'preview--closed' : 'preview--open'}>
           <p className="comment__title">Leave a comment...</p>
           <button className="comment__btn" onClick={handleShowForm}>
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -81,12 +80,12 @@ const App = () => {
             </svg> Comment
           </button>
         </div>
-        <form className="comment__form" action="index.html" method="POST" onSubmit={handleFormSubmit} style={{display: 'none'}}>
+        <form className={store.commentForm ? 'comment__form' : 'comment__form--closed'} onSubmit={e => handleFormSubmit(e, {name: store.getName, text: store.getText})}>
           <label className="comment__form__label" htmlFor="name">Name</label>
-          <input className="comment__form__input name" type="text" id="name" name="name"></input>
+          <input className="comment__form__input name" type="text" id="name" name="name" onChange={e => store.setName(e.currentTarget.value)}/>
           <label className="comment__form__label" htmlFor="comment">Comment</label>
           <p className="form-error"></p>
-          <textarea className="comment__form__input comment__form__input--comment comment valid-input" id="comment" name="comment" rows="4" required></textarea>
+          <textarea className="comment__form__input comment__form__input--comment comment valid-input" id="comment" name="comment" rows="4" onChange={e => store.setText(e.currentTarget.value)} required></textarea>
           <button className="comment__form__submit" type="submit">Submit</button>
         </form>
       </section>
@@ -113,14 +112,14 @@ const App = () => {
               <h2 className="comments__list__comment__text__name">{comment.name}</h2>
               <p className="comments__list__comment__text__date">{comment.date}</p>
               {comment.repl ? <p className="comments__list__comment__text__comment"><span className="comments__list__comment__text__comment__tag">@{comment.repl}</span> {comment.text}</p> : <p className="comments__list__comment__text__comment">{comment.text}</p>}
-              <button className="comments__list__comment__answer" onClick={handleOpenAnswerForm}>
+              <button className="comments__list__comment__answer" onClick={() => handleOpenAnswerForm(comment)}>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M15.6667 3.99999H14.8334V10.6667C14.8334 11.125 14.4584 11.5 14 11.5H4.00002V12.3333C4.00002 13.25 4.75002 14 5.66669 14H14L17.3334 17.3333V5.66666C17.3334 4.74999 16.5834 3.99999 15.6667 3.99999ZM13.1667 8.16666V2.33332C13.1667 1.41666 12.4167 0.666656 11.5 0.666656H2.33335C1.41669 0.666656 0.666687 1.41666 0.666687 2.33332V13.1667L4.00002 9.83332H11.5C12.4167 9.83332 13.1667 9.08332 13.1667 8.16666Z" fill="white"/>
                 </svg> Answer
               </button>
-              <form className="answer__form" onSubmit={e => handleFormSubmit(e, comment.name.replace(/ /g, ''))}>
-                <label className="answer__form__label">Name<input className="answer__form__input name" type="text"></input></label>
-                <label className="answer__form__label">Answer<span className="answer__form__user">@{comment.name.replace(/ /g, '')}</span><textarea className="answer__form__input answer__form__input--comment comment" rows="4"></textarea></label>
+              <form className={comment.answerForm ? 'answer__form' : 'answer__form--closed'} onSubmit={e => handleFormSubmit(e, {name: store.getName, text: store.getText, repl: comment.name.replace(/ /g, ''), comment})}>
+                <label className="answer__form__label">Name<input className="answer__form__input name" type="text" onChange={e => store.setName(e.currentTarget.value)}/></label>
+                <label className="answer__form__label">Answer<span className="answer__form__user">@{comment.name.replace(/ /g, '')}</span><textarea className="answer__form__input answer__form__input--comment comment" rows="4" onChange={e => store.setText(e.currentTarget.value)}></textarea></label>
                 <button className="comment__form__submit" type="submit">Submit</button>
               </form>
             </li>)}

@@ -31,7 +31,15 @@
   margin: 0 var(--smallSpacer) -.2rem 0;
 }
 
-.comment__preview {
+.preview--open {
+  display: block;
+}
+
+.preview--closed {
+  display: none;
+}
+
+.comment__form--closed{
   display: none;
 }
 
