@@ -82,10 +82,10 @@ const App = () => {
         </div>
         <form className={store.commentForm ? 'comment__form' : 'comment__form--closed'} onSubmit={e => handleFormSubmit(e, {name: store.getName, text: store.getText})}>
           <label className="comment__form__label" htmlFor="name">Name</label>
-          <input className="comment__form__input name" type="text" id="name" name="name" onChange={e => store.setName(e.currentTarget.value)}/>
+          <input className="comment__form__input name" type="text" id="name" name="name" onChange={e => store.setPost('name', e.currentTarget.value)}/>
           <label className="comment__form__label" htmlFor="comment">Comment</label>
           <p className="form-error"></p>
-          <textarea className="comment__form__input comment__form__input--comment comment valid-input" id="comment" name="comment" rows="4" onChange={e => store.setText(e.currentTarget.value)} required></textarea>
+          <textarea className="comment__form__input comment__form__input--comment comment valid-input" id="comment" name="comment" rows="4" onChange={e => store.setPost('text', e.currentTarget.value)} required></textarea>
           <button className="comment__form__submit" type="submit">Submit</button>
         </form>
       </section>
@@ -118,8 +118,8 @@ const App = () => {
                 </svg> Answer
               </button>
               <form className={comment.answerForm ? 'answer__form' : 'answer__form--closed'} onSubmit={e => handleFormSubmit(e, {name: store.getName, text: store.getText, repl: comment.name.replace(/ /g, ''), comment})}>
-                <label className="answer__form__label">Name<input className="answer__form__input name" type="text" onChange={e => store.setName(e.currentTarget.value)}/></label>
-                <label className="answer__form__label">Answer<span className="answer__form__user">@{comment.name.replace(/ /g, '')}</span><textarea className="answer__form__input answer__form__input--comment comment" rows="4" onChange={e => store.setText(e.currentTarget.value)}></textarea></label>
+                <label className="answer__form__label">Name<input className="answer__form__input name" type="text" onChange={e => store.setPost('name', e.currentTarget.value)}/></label>
+                <label className="answer__form__label">Answer<span className="answer__form__user">@{comment.name.replace(/ /g, '')}</span><textarea className="answer__form__input answer__form__input--comment comment" rows="4" onChange={e => store.setPost('text', e.currentTarget.value)}></textarea></label>
                 <button className="comment__form__submit" type="submit">Submit</button>
               </form>
             </li>)}

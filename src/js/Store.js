@@ -4,8 +4,10 @@ configure({ enforceActions: "observed" });
 
 class Store {
   constructor() {
-    this.name = undefined;
-    this.text = undefined;
+    this.post = {
+      name: '',
+      text: ''
+    }
     this.comments = [];
     this.commentForm = false;
   }
@@ -34,20 +36,16 @@ class Store {
     this.comments.push(...comments);
   }
 
-  setName(name) {
-    this.name = name;
+  setPost(value, input) {
+    this.post[value] = input;
   }
 
   get getName() {
-    return this.name;
-  }
-
-  setText(text) {
-    this.text = text;
+    return this.post.name;
   }
 
   get getText() {
-    return this.text;
+    return this.post.text;
   }
 
 
@@ -58,8 +56,7 @@ class Store {
 }
 
 decorate(Store, {
-  name: observable,
-  text: observable,
+  post: observable,
   comments: observable,
   addComment: action,
   sortComments: computed,
@@ -67,8 +64,7 @@ decorate(Store, {
   updateLike: action,
   updateDislike: action,
   seed: action,
-  setName: action,
-  setText: action,
+  setPost: action,
   getName: computed,
   getText: computed,
   commentForm: observable,
