@@ -2,14 +2,9 @@ import Comment from '../models/Comment';
 import {decorate, observable, computed, action, configure} from 'mobx';
 configure({ enforceActions: "observed" });
 
-class Store {
+class DataStore {
   constructor() {
-    this.post = {
-      name: '',
-      text: ''
-    }
     this.comments = [];
-    this.commentForm = false;
   }
 
   addComment({name, comment, repl}) {
@@ -35,42 +30,17 @@ class Store {
   seed(comments) {
     this.comments.push(...comments);
   }
-
-  setPost(value, input) {
-    this.post[value] = input;
-  }
-
-  get getName() {
-    return this.post.name;
-  }
-
-  get getText() {
-    return this.post.text;
-  }
-
-
-  openCommentForm(value) {
-    this.commentForm = value;
-  }
-
 }
 
-decorate(Store, {
-  post: observable,
+decorate(DataStore, {
   comments: observable,
   addComment: action,
   sortComments: computed,
   totalComments: computed,
   updateLike: action,
   updateDislike: action,
-  seed: action,
-  setPost: action,
-  getName: computed,
-  getText: computed,
-  commentForm: observable,
-  answerForm: observable,
-  openCommentForm: action
+  seed: action
 });
 
 
-export default Store;
+export default DataStore;

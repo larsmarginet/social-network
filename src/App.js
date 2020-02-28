@@ -1,6 +1,8 @@
 import React from 'react';
+import Comments from "./components/Comments";
+import CommentForm from "./components/CommentForm";
 
-function App({store}) {
+function App({dataStore, uiStore}) {
   return (
     <>
     <header className="header">
@@ -17,7 +19,14 @@ function App({store}) {
           <li className="question__keywords__keyword">elections</li>
         </ul>
       </section>
-      </div>
+      <section className="comment">
+        <CommentForm dataStore={dataStore} uiStore={uiStore}/>
+      </section>
+      <section className="comments">
+        <h2 className="hidden">comments</h2>
+        <Comments dataStore={dataStore} uiStore={uiStore}/>
+      </section>
+    </div>
     </>
   );
 }

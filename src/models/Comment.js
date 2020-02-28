@@ -1,5 +1,6 @@
 import Published from './Published.js';
-import {decorate, observable, configure, action} from 'mobx';
+import {decorate, observable, configure} from 'mobx';
+import { v4 } from "uuid";
 
 class Comment {
   constructor({name = 'Anonymous', text, repl, score = 0}) {
@@ -9,17 +10,13 @@ class Comment {
     this.repl = repl;
     this.score = score;
     this.answerForm = false;
-  }
-
-  openAnswerForm(value) {
-    this.answerForm = value;
+    this.id = v4(); 
   }
 }
 
 decorate(Comment, {
   score: observable,
-  answerForm: observable,
-  openAnswerForm: action
+  answerForm: observable
 });
 
 configure({enforceActions: 'observed'});
