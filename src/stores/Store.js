@@ -1,4 +1,4 @@
-import Comment from './Comment.js';
+import Comment from '../models/Comment';
 import {decorate, observable, computed, action, configure} from 'mobx';
 configure({ enforceActions: "observed" });
 
