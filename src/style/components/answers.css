@@ -39,7 +39,7 @@
   fill: var(--blue);
 }
 
-.comments__list__comment__btns__btn--dislike {
+.comments__list__comment__btns__btnDislike {
   transform: rotate(180deg);
 }
 

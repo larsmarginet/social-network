@@ -1,0 +1,13 @@
+@value tokens: "../../style/tokens.module.css";
+@value blue, grey, mediumSpacer from tokens;
+
+.comments__amount {
+    color: blue;
+    font-family: 'Signika Negative', sans-serif;
+    border-bottom: .1rem solid grey;
+    margin-bottom: mediumSpacer;
+  }
+  
+.comments__amount__num {
+  font-weight: 700;
+}

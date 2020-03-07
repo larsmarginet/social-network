@@ -1,0 +1,11 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700|Signika+Negative:400,700&display=swap);
+
+@value black: #374445;
+@value blue: #04bfbf;
+@value grey: #828282;
+@value smallSpacer: 1rem;
+@value mediumSpacer: 1.5rem;
+@value bigSpacer: 2rem;
+@value bigFont: 3.2rem;
+@value regularFont: 2rem;
+@value smallFont: 1.6rem;

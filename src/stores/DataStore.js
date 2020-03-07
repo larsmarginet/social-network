@@ -1,22 +1,18 @@
-import Comment from '../models/Comment';
-import {decorate, observable, computed, action, configure} from 'mobx';
+import {decorate, observable, action, configure} from 'mobx';
 configure({ enforceActions: "observed" });
 
 class DataStore {
   constructor() {
-    this.comments = [];
+    this.threads = [];
+    this.currentThread = undefined;
   }
 
-  addComment({name, comment, repl}) {
-    this.comments.push(new Comment({name: name, text: comment, repl: repl}));
+  seed(threads) {
+    this.threads = threads;
   }
 
-  get sortComments() {
-    return this.comments.slice().sort((a, b) => b.score - a.score);
-  }
-
-  get totalComments() {
-    return this.comments.length;
+  setCurrentThread(thread) {
+    this.currentThread = thread;
   }
 
   updateLike(comment) {
@@ -26,20 +22,15 @@ class DataStore {
   updateDislike(comment) {
     comment.score --;
   }
-
-  seed(comments) {
-    this.comments.push(...comments);
-  }
 }
 
 decorate(DataStore, {
-  comments: observable,
-  addComment: action,
-  sortComments: computed,
-  totalComments: computed,
+  threads: observable,
+  currentThread: observable,
+  seed: action,
+  setCurrentThread: action,
   updateLike: action,
-  updateDislike: action,
-  seed: action
+  updateDislike: action
 });
 
 

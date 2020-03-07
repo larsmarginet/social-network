@@ -1,0 +1,64 @@
+@value tokens: "../../style/tokens.module.css";
+@value blue, smallFont, smallSpacer from tokens;
+
+.answer__form {
+    grid-column: 1/4;
+}
+  
+.answer__formClosed {
+    display: none;
+}
+
+.answer__form__label {
+    display: flex;
+    flex-flow: column;
+    font-size: smallFont;
+    margin-top: smallSpacer;
+}
+
+.answer__form__input {
+    width: 100%;
+    border: .1rem solid blue;
+    padding: smallSpacer;
+    font-size: smallFont;
+}
+
+.answer__form__input:focus {
+    outline-color: blue;
+}
+
+.answer__form__inputComment {
+     margin-top: 0;
+}
+
+.answer__form__user {
+    color: blue;
+}
+
+.comment__form__submit {
+    background-color: blue;
+    font-size: smallFont;
+    color: white;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2.2rem;
+    height: 3rem;
+    margin: smallSpacer 0;
+    cursor: pointer;
+    width: 100%;
+}
+
+.comment {
+    background-color: #faf9f9;
+    min-height: 13rem;
+    margin: bigSpacer 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+    font-family: Roboto, 'sans-serif';
+    background-color: white;
+}

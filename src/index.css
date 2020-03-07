@@ -1,8 +1,4 @@
-@import './css/reset.css';
-@import './css/vars.css';
-@import './css/components/question.css';
-@import './css/components/comment.css';
-@import './css/components/answers.css';
+@import './style/reset.css';
 
 html {
   box-sizing: border-box;
@@ -17,31 +13,6 @@ html {
 }
 /* stylelint-enable */
 
-body {
-  font-size: var(--regularFont);
-  font-family: Roboto, sans-serif;
-  line-height: 1.4;
-}
-
-.header {
-  color: white;
-  background-color: var(--blue);
-  height: 7rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.header__title {
-  font-family: 'Signika Negative', sans-serif;
-  font-size: var(--bigFont);
-  font-weight: 700;
-}
-
-.container {
-  margin: var(--bigSpacer) var(--smallSpacer);
-}
-
 .hidden {
   display: none;
 }
@@ -53,5 +24,4 @@ textarea {
 .form-error {
   color: red;
   font-size: var(--smallFont);
-
 }
