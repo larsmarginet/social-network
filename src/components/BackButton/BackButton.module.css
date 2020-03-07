@@ -1,0 +1,8 @@
+@value tokens: "../../style/tokens.module.css";
+@value smallSpacer from tokens;
+
+.back {
+    padding-left: smallSpacer;
+    border: none;
+    background: none;
+}

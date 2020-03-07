@@ -1,0 +1,31 @@
+@value tokens: "../../style/tokens.module.css";
+@value grey, blue, smallFont, regularFont, smallSpacer, mediumSpacer, bigSpacer from tokens;
+
+.addWrapper {
+    padding: 5rem 0;
+    margin: bigSpacer 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    width: 100%;
+    font-family: Roboto, 'sans-serif';
+    background-color: #FAF9F9;
+}
+
+.addText {
+    color: grey;
+    font-size: smallFont;
+}
+
+.addButton {
+    height: 4rem;
+    background-color: blue;
+    border-radius: 2.2rem;
+    color: white;
+    padding: 0 bigSpacer;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

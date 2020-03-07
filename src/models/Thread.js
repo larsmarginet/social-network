@@ -26,13 +26,23 @@ class Thread {
   get sortComments() {
     return this.comments.slice().sort((a, b) => b.score - a.score);
   }
+
+  updateLike(comment) {
+    comment.score ++;
+  }
+
+  updateDislike(comment) {
+    comment.score --;
+  }
 }
 
 decorate(Thread, {
   comments: observable,
   addComment: action,
   totalComments: computed, 
-  sortComments: computed
+  sortComments: computed,
+  updateLike: action,
+  updateDislike: action
 });
 
 export default Thread;

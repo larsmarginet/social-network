@@ -2,11 +2,10 @@
 @value grey, blue, smallFont, regularFont, smallSpacer, mediumSpacer, bigSpacer from tokens;
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .comment {
-  background-color: #faf9f9;
   min-height: 13rem;
   margin: bigSpacer 0;
   display: flex;
@@ -15,7 +14,7 @@
   flex-flow: column;
   width: 100%;
   font-family: Roboto, 'sans-serif';
-  background-color: white;
+  background-color: #FAF9F9;
 }
 
 .comment__title {

@@ -1,26 +1,27 @@
 @value tokens: "./style/tokens.module.css";
 @value blue, regularFont, bigFont, smallSpacer, bigSpacer from tokens;
 
-
-
 .header {
-    color: white;
-    background-color: blue;
-    height: 7rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  background-color: blue;
+  width: 100%;
+  height: 7rem;
+  display: grid;
+  grid-template-columns: 5rem auto 5rem;
+  align-items: center;
+}
   
-  .header__title {
-    font-family: 'Signika Negative', sans-serif;
-    font-size: bigFont;
-    font-weight: 700;
-  }
+.header__title {
+  font-family: 'Signika Negative', sans-serif;
+  font-size: bigFont;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  justify-self: center;
+}
   
-  .container {
-    margin: bigSpacer smallSpacer;
-    font-size: regularFont;
-    font-family: Roboto, sans-serif;
-    line-height: 1.4;
-  }
+.container {
+  margin: bigSpacer smallSpacer;
+  font-size: regularFont;
+  font-family: Roboto, sans-serif;
+  line-height: 1.4;
+}

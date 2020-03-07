@@ -7,11 +7,11 @@ const Thread = ({thread}) => {
     return useObserver(() => (
         <>
             <li>
-                <Link thread={thread} className={styles.threadWrapper} to={`/detail/${thread.id}`}>
+                <Link className={styles.threadWrapper} to={`/detail/${thread.id}`}>
                     <section className={styles.thread}>
-                        <span className={styles.thread__name}>{thread.name}</span>
-                        <span className={styles.thread__date}>{thread.date}</span>
-                        <span className={styles.thread__text}>{thread.question}</span>
+                        <p className={styles.thread__name}>{thread.name}<span className={styles.thread__name__totalComments}>{thread.totalComments}</span></p>
+                        <p className={styles.thread__date}>{thread.date}</p>
+                        <p className={styles.thread__text}>{thread.question}</p>
                         <ul className={styles.thread__keywords}>
                             {thread.keywords.map(keyword => (
                                 <li className={styles.thread__keywords__keyword} key={keyword}>{keyword}</li>

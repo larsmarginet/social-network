@@ -38,8 +38,7 @@ const CommentForm = ({thread}) => {
         <label className={styles.comment__form__label} htmlFor="name">Name</label>
         <input className={`${styles.comment__form__input} ${styles.name}`} type="text" id="name" name="name" value={name} onChange={e => setName(e.currentTarget.value)}/>
         <label className={styles.comment__form__label} htmlFor="comment">Comment</label>
-        <p className="form-error"></p>
-        <textarea className={`${styles.comment__form__input} ${styles.comment__form__inputComment} ${styles.comment}`} id="comment" name="comment" rows="4" value={text} onChange={e => setText(e.currentTarget.value)} required></textarea>
+        <textarea className={styles.comment__form__input} id="comment" name="comment" rows="4" value={text} onChange={e => setText(e.currentTarget.value)} required></textarea>
         <button className={styles.comment__form__submit} type="submit">Submit</button>
       </form>
     </section>

@@ -6,17 +6,17 @@ import { useStores } from "../../hooks";
 import styles from "./Comment.module.css";
 
 const Comment = ({comment, thread}) => {
-  const { dataStore, uiStore } = useStores();
+  const { uiStore } = useStores();
     return useObserver(() => (
         <li key={comment.text} className={styles.comments__list__comment}>
               <div className={styles.comments__list__comment__btns}>
-                <button className={`${styles.comments__list__comment__btns__btn} ${styles.comments__list__comment__btns__btnLike}`} onClick={() => dataStore.updateLike(comment)}>
+                <button className={`${styles.comments__list__comment__btns__btn} ${styles.comments__list__comment__btns__btnLike}`} onClick={() => thread.updateLike(comment)}>
                   <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17 33.6667C26.19 33.6667 33.6667 26.19 33.6667 17C33.6667 7.81001 26.19 0.333344 17 0.333344C7.81 0.333344 0.333328 7.81001 0.333328 17C0.333328 26.19 7.81 33.6667 17 33.6667ZM17 8.66668L25.3333 17H18.6667V25.3333H15.3333V17H8.66666L17 8.66668Z" fill="#828282"/>
                   </svg>
                 </button>
                 <p className={styles.comments__list__comment__btns__score}>{comment.score > 0 ? `+${comment.score}` : comment.score}</p>
-                <button className={`${styles.comments__list__comment__btns__btn} ${styles.comments__list__comment__btns__btnDislike}`} onClick={() => dataStore.updateDislike(comment)}>
+                <button className={`${styles.comments__list__comment__btns__btn} ${styles.comments__list__comment__btns__btnDislike}`} onClick={() => thread.updateDislike(comment)}>
                   <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M17 33.6667C26.19 33.6667 33.6667 26.19 33.6667 17C33.6667 7.81001 26.19 0.333344 17 0.333344C7.81 0.333344 0.333328 7.81001 0.333328 17C0.333328 26.19 7.81 33.6667 17 33.6667ZM17 8.66668L25.3333 17H18.6667V25.3333H15.3333V17H8.66666L17 8.66668Z" fill="#828282"/>
                   </svg>

@@ -1,38 +1,12 @@
 @value tokens: "../../style/tokens.module.css";
-@value blue, smallFont, smallSpacer from tokens;
+@value grey, blue, smallFont, smallSpacer from tokens;
 
-.answer__form {
-    grid-column: 1/4;
-}
-  
-.answer__formClosed {
-    display: none;
-}
-
-.answer__form__label {
-    display: flex;
-    flex-flow: column;
-    font-size: smallFont;
-    margin-top: smallSpacer;
-}
-
-.answer__form__input {
+.thread__form__input {
     width: 100%;
     border: .1rem solid blue;
     padding: smallSpacer;
     font-size: smallFont;
-}
-
-.answer__form__input:focus {
-    outline-color: blue;
-}
-
-.answer__form__inputComment {
-     margin-top: 0;
-}
-
-.answer__form__user {
-    color: blue;
+    margin-bottom: smallSpacer;
 }
 
 .comment__form__submit {
@@ -48,4 +22,9 @@
     margin: smallSpacer 0;
     cursor: pointer;
     width: 100%;
+}
+
+.keywordsMessage {
+    font-size: smallFont;
+    color: grey;
 }
