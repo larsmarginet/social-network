@@ -1,5 +1,6 @@
 import Comment from './Comment.js';
 import Published from './Published.js';
+import DataStore from '../stores/DataStore';
 
 test('Create a comment', () => {
   const date = new Published();
@@ -30,4 +31,3 @@ test('Create an answer', () => {
   expect(comment.repl).toBe('Test');
   expect(comment.score).toBe(0);
 });
-

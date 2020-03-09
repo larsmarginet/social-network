@@ -10,7 +10,11 @@ const Detail = () => {
     const { dataStore } = useStores();
     const { id } = useParams();
     const thread = dataStore.threads.filter(el => el.id === id)[0];
-    return useObserver(() => (
+    return useObserver(() => {
+        if(! thread) {
+            return <p>Thread not found...</p>
+        }
+        return (
         <>
             <section className={styles.question}>
                 <h2 className={styles.question__name}>{thread.name}</h2>
@@ -30,7 +34,7 @@ const Detail = () => {
                 <Comments thread={thread}/>
             </section>
       </>
-      ));
+    )});
 };
 
 

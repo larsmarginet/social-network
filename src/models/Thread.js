@@ -15,8 +15,8 @@ class Thread {
     this.date = new Published().fullDate();
   }
 
-  addComment({name, comment, repl}) {
-    this.comments.push(new Comment({name: name, text: comment, repl: repl}));
+  addComment({name, comment, repl, score = 0}) {
+    this.comments.push(new Comment({name: name, text: comment, repl: repl, score: score}));
   }
 
   get totalComments() {

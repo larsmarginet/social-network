@@ -4,6 +4,7 @@ import { useStores } from "../../hooks";
 import { Link } from "react-router-dom";
 import Thread from "../Thread/Thread";
 import styles from "./Threads.module.css"
+import { ROUTES } from "../../consts";
 
 const Threads = () => {
     const { dataStore } = useStores();
@@ -17,7 +18,7 @@ const Threads = () => {
 
             <div className={styles.addWrapper}>
                 <p className={styles.addText}>Open a thread...</p>
-                <Link className={styles.addButton} to='/add'>
+                <Link className={styles.addButton} to={ROUTES.add}>
                     open thread
                 </Link>
             </div>
