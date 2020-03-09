@@ -9,6 +9,10 @@
     margin-bottom: smallSpacer;
 }
 
+.thread__form__input:focus {
+    outline-color: blue;
+}
+
 .comment__form__submit {
     background-color: blue;
     font-size: smallFont;

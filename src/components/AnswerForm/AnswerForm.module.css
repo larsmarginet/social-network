@@ -28,7 +28,8 @@
 }
 
 .answer__form__inputComment {
-     margin-top: 0;
+    composes: answer__form__input;
+    margin-top: 0;
 }
 
 .answer__form__user {

@@ -27,8 +27,8 @@ const AnswerForm = ({comment, thread}) => {
 
     return useObserver(() => (
         <form className={comment.answerForm ? styles.answer__form : styles.answer__formClosed} onSubmit={e => handleFormSubmit(e, comment)}>
-            <label className={styles.answer__form__label}>Name<input className={`${styles.answer__form__input} ${styles.name}`} value={name} type="text" onChange={e => setName(e.currentTarget.value)}/></label>
-            <label className={styles.answer__form__label}>Answer<span className={styles.answer__form__user}>@{comment.name.replace(/ /g, '')}</span><textarea value={text} className={`${styles.answer__form__input} ${styles.answer__form__inputComment}`} rows="4" onChange={e => setText(e.currentTarget.value)}></textarea></label>
+            <label className={styles.answer__form__label}>Name<input className={styles.answer__form__input} value={name} type="text" onChange={e => setName(e.currentTarget.value)}/></label>
+            <label className={styles.answer__form__label}>Answer<span className={styles.answer__form__user}>@{comment.name.replace(/ /g, '')}</span><textarea value={text} className={styles.answer__form__inputComment} rows="4" onChange={e => setText(e.currentTarget.value)}></textarea></label>
             <button className={styles.comment__form__submit} type="submit">Submit</button>
         </form>
       ));

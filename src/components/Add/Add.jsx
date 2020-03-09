@@ -22,9 +22,9 @@ const Add = () => {
     return useObserver(() => (
         <>
           <form onSubmit={handleFormSubmit}>
-            <label className={styles.thread__form__label}>Name<input className={`${styles.thread__form__input} ${styles.name}`} value={name} type="text" onChange={e => setName(e.currentTarget.value)}/></label>
-            <label className={styles.thread__form__label}>Question<textarea value={question} className={`${styles.thread__form__input} ${styles.thread__form__inputComment}`} rows="4" onChange={e => setQuestion(e.currentTarget.value)}></textarea></label>
-            <label className={styles.thread__form__label}>Keywords <span className={styles.keywordsMessage}> separate with comma's</span><input className={`${styles.thread__form__input} ${styles.name}`} value={keywords} type="text" onChange={e => setKeywords(e.currentTarget.value)}/></label>
+            <label className={styles.thread__form__label}>Name<input className={styles.thread__form__input} value={name} type="text" onChange={e => setName(e.currentTarget.value)}/></label>
+            <label className={styles.thread__form__label}>Question<textarea value={question} className={styles.thread__form__input} rows="4" onChange={e => setQuestion(e.currentTarget.value)}></textarea></label>
+            <label className={styles.thread__form__label}>Keywords <span className={styles.keywordsMessage}> separate with comma's</span><input className={styles.thread__form__input} value={keywords} type="text" onChange={e => setKeywords(e.currentTarget.value)}/></label>
             <button className={styles.comment__form__submit} type="submit">Submit</button>
           </form>
         </>
