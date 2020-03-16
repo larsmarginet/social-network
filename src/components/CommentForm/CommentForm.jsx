@@ -3,23 +3,24 @@ import PropTypes from "prop-types";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../../hooks";
 import styles from "./CommentForm.module.css";
+import Comment from "../../models/Comment";
 
 const CommentForm = ({thread}) => {
-  const { uiStore } = useStores();
-  const [name, setName] = useState("");
+  const { dataStore, uiStore } = useStores();
   const [text, setText] = useState("");
 
   const handleFormSubmit = e => {
       e.preventDefault();
-      const $comment = {
-          name: name,
-          comment: text
-      };
-      if ($comment) {
-          thread.addComment($comment);
-          uiStore.openCommentForm(false);
-          setName("");
-          setText("");
+    
+      if (text) {
+        new Comment({
+          text: text, 
+          thread: thread, 
+          user: dataStore.currentUser
+        });
+
+        uiStore.openCommentForm(false);
+        setText("");
       }
   };
 
@@ -35,8 +36,6 @@ const CommentForm = ({thread}) => {
         </button>
       </div>
       <form className={uiStore.commentForm ? styles.comment__form : styles.comment__formClosed} onSubmit={handleFormSubmit}>
-        <label className={styles.comment__form__label} htmlFor="name">Name</label>
-        <input className={styles.comment__form__input} type="text" id="name" name="name" value={name} onChange={e => setName(e.currentTarget.value)}/>
         <label className={styles.comment__form__label} htmlFor="comment">Comment</label>
         <textarea className={styles.comment__form__input} id="comment" name="comment" rows="4" value={text} onChange={e => setText(e.currentTarget.value)} required></textarea>
         <button className={styles.comment__form__submit} type="submit">Submit</button>

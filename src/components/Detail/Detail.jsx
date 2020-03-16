@@ -17,7 +17,7 @@ const Detail = () => {
         return (
         <>
             <section className={styles.question}>
-                <h2 className={styles.question__name}>{thread.name}</h2>
+                <h2 className={styles.question__name}>{thread.administrator.name}</h2>
                 <p className={styles.question__date}>{thread.date}</p>
                 <p className={styles.question__text}>{thread.question}</p>
                 <ul className={styles.question__keywords}>

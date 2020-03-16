@@ -1,24 +1,37 @@
 import {decorate, observable, action, configure} from 'mobx';
-import Thread from "../models/Thread";
 
 configure({ enforceActions: "observed" });
 
 class DataStore {
   constructor() {
     this.threads = [];
+    this.users = [];
+    this.currentUser = undefined;
   }
 
   seed(threads) {
     this.threads = threads;
   }
 
-  addThread({name, question, keywords}) {
-    this.threads.push(new Thread({name: name, question: question, keywords: keywords}));
+  addThread(thread) {
+    this.threads.push(thread);
+  }
+
+  addUser(user) {
+    this.users.push(user);
+  } 
+
+  setCurrentUser(user) {
+    this.currentUser = user;
   }
 }
 
 decorate(DataStore, {
   threads: observable,
+  currentUser: observable,
+  setCurrentUser: action,
+  users: observable,
+  addUser: action,
   seed: action,
   addThread: action
 });

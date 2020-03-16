@@ -1,7 +1,7 @@
 import React from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../../hooks";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import Thread from "../Thread/Thread";
 import styles from "./Threads.module.css"
 import { ROUTES } from "../../consts";
@@ -9,7 +9,8 @@ import { ROUTES } from "../../consts";
 const Threads = () => {
     const { dataStore } = useStores();
     return useObserver(() => (
-        <>
+
+        dataStore.currentUser ? (<>
             <ul>
                 {dataStore.threads.slice().reverse().map(thread => (
                     <Thread thread={thread} key={thread.id}/>
@@ -22,7 +23,8 @@ const Threads = () => {
                     open thread
                 </Link>
             </div>
-      </>
+      </>) : <Redirect to={ROUTES.login}/>
+        
       ));
 };
 

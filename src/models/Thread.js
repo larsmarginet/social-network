@@ -6,13 +6,31 @@ configure({ enforceActions: "observed" });
 
 
 class Thread {
-  constructor({name, comments = [], question, keywords = []}) {
+  constructor({administrator, comments = [], question, keywords = [], users = [], store }) {
     this.id = v4();
-    this.name = name;
+    this.administrator = administrator;
     this.question = question;
     this.comments = comments;
     this.keywords = keywords;
     this.date = new Published().fullDate();
+    if (!store) {
+      throw new Error("No store");
+    }
+    this.store = store;
+    this.store.addThread(this);
+    this.users = users;
+    this.users.forEach(user => {
+      user.linkThread(this);
+    });
+  }
+
+  linkComment(comment) {
+    !this.comments.includes(comment) && this.comments.push(comment);
+  }
+
+  linkUser(user) {
+    !this.users.includes(user) && this.users.push(user);
+    !user.threads.includes(user) && user.linkThread(this);
   }
 
   addComment({name, comment, repl, score = 0}) {
@@ -39,6 +57,8 @@ class Thread {
 decorate(Thread, {
   comments: observable,
   addComment: action,
+  linkUser: action,
+  linkComment: action,
   totalComments: computed, 
   sortComments: computed,
   updateLike: action,

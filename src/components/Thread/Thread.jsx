@@ -10,7 +10,7 @@ const Thread = ({thread}) => {
             <li>
                 <Link className={styles.threadWrapper} to={`${ROUTES.detail.to}${thread.id}`}>
                     <section className={styles.thread}>
-                        <p className={styles.thread__name}>{thread.name}<span className={styles.thread__name__totalComments}>{thread.totalComments}</span></p>
+                        <p className={styles.thread__name}>{thread.administrator.name}<span className={styles.thread__name__totalComments}>{thread.totalComments}</span></p>
                         <p className={styles.thread__date}>{thread.date}</p>
                         <p className={styles.thread__text}>{thread.question}</p>
                         <ul className={styles.thread__keywords}>
