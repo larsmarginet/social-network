@@ -1,8 +1,6 @@
 import Published from './Published.js';
-import Comment from './Comment';
-import {decorate, observable, action, computed, configure} from 'mobx';
+import {decorate, observable, action, computed} from 'mobx';
 import { v4 } from "uuid";
-configure({ enforceActions: "observed" });
 
 
 class Thread {
@@ -33,10 +31,6 @@ class Thread {
     !user.threads.includes(user) && user.linkThread(this);
   }
 
-  addComment({name, comment, repl, score = 0}) {
-    this.comments.push(new Comment({name: name, text: comment, repl: repl, score: score}));
-  }
-
   get totalComments() {
     return this.comments.length;
   }
@@ -56,7 +50,6 @@ class Thread {
 
 decorate(Thread, {
   comments: observable,
-  addComment: action,
   linkUser: action,
   linkComment: action,
   totalComments: computed, 

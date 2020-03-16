@@ -1,5 +1,5 @@
 import Published from './Published.js';
-import {decorate, observable, configure} from 'mobx';
+import {decorate, observable} from 'mobx';
 import { v4 } from "uuid";
 
 class Comment {
@@ -27,7 +27,5 @@ decorate(Comment, {
   score: observable,
   answerForm: observable
 });
-
-configure({enforceActions: 'observed'});
 
 export default Comment;

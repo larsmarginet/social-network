@@ -1,16 +1,27 @@
-import UiStore from './UiStore';
-import Comment from '../models/Comment';
+import UiStore from '../stores/UiStore'
+import DataStore from '../stores/DataStore'
+import User from '../models/User'
+import Thread from '../models/Thread'
 
-test('open commenForm', function() {
-    const uistore = new UiStore();
-    uistore.openCommentForm(true);
-    expect(uistore.commentForm).toBe(true);
+test("Create a UiStore", () => {
+    const uiStore = new UiStore();
+    expect(uiStore.commentForm).toBe(false);
+    expect(uiStore.answer).toBe(undefined);
 });
 
-test('open answerForm', function() {
-    const uistore = new UiStore();
-    const comment = new Comment({name: 'Test', date: '15/02/20', text: 'Test'});
-    uistore.openAnswerForm(comment, true);
-    expect(uistore.answer).toBe(comment);
-    expect(comment.answerForm).toBe(true);
+test("Open comment form", () => {
+    const uiStore = new UiStore();
+    expect(uiStore.commentForm).toBe(false);
+    uiStore.openCommentForm(true);
+    expect(uiStore.commentForm).toBe(true);
+});
+
+test("Open answer form", () => {
+    const uiStore = new UiStore();
+    const dataStore = new DataStore();
+    const user = new User({ name: "test", store: dataStore });
+    const thread = new Thread({ administrator: user, store: dataStore });
+    const comment = new Comment({ text: "test", user: user, thread: thread });
+    uiStore.openAnswerForm(comment, true);
+    expect(uiStore.answer.answerForm).toBe(true);
 });

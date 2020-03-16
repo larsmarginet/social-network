@@ -2,6 +2,15 @@
   "name": "social-network-larsmarginet",
   "version": "0.1.0",
   "private": true,
+  "jest": {
+    "collectCoverageFrom": [
+      "src/(models|stores)/**.js",
+      "!<rootDir>/node_modules/"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
