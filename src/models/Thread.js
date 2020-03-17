@@ -4,8 +4,12 @@ import { v4 } from "uuid";
 
 
 class Thread {
-  constructor({administrator, comments = [], question, keywords = [], users = [], store }) {
-    this.id = v4();
+  constructor({administrator, id, comments = [], question, keywords = [], users = [], store }) {
+    if (!id) {
+      this.id = v4();
+    } else {
+      this.id = id;
+    }
     this.administrator = administrator;
     this.question = question;
     this.comments = comments;
